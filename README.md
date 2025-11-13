@@ -1,6 +1,6 @@
 # 🧠 Smart Quizzer – Computer Science Trivia (Tkinter(GUI) + Trivia API)
 
-Smart Quizzer is a simple Python desktop application built with Tkinter that generates computer science quiz questions automatically using the Open Trivia Database API.
+Smart Quizzer is a simple Python desktop application built with Tkinter that generates quiz questions dynamically using the free Open Trivia Database API.
 
 ---
 
