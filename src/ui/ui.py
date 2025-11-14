@@ -13,8 +13,8 @@ class QuizInterface:
         self.score = 0
         self.score_label = Label(text=f"score: {self.score}", fg="#FFFFFF", bg= THEME_COLOR, font=(FONT_NAME, 20, "italic"))
         self.score_label.grid(row=0, column=1)
-        self.canvas = Canvas(width=300, height=250, bg="#FFFFFF", highlightthickness=0)
-        self.ques_text = self.canvas.create_text(150, 125, width=285, text="starting point!", font=(FONT_NAME, 20, "italic"), fill="#006400")
+        self.canvas = Canvas(width=400, height=250, bg="#FFFFFF", highlightthickness=0)
+        self.ques_text = self.canvas.create_text(200, 125, width=385, text="starting point!", font=(FONT_NAME, 20, "italic"), fill="#006400")
         self.canvas.grid(row=1, column=0, columnspan=2, sticky="ew", pady=50)
         true_img = PhotoImage(file="smart_quizzer/src/assets/images/true.png")
         self.true_button = Button(image=true_img, highlightthickness=0, borderwidth=0, activebackground=THEME_COLOR)
@@ -29,5 +29,5 @@ class QuizInterface:
    
    
     def get_next_question(self):
-        q_text = self.quiz.next_question
+        q_text = self.quiz.next_question()
         self.canvas.itemconfig(self.ques_text, text= q_text)
