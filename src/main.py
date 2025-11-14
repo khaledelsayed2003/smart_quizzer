@@ -14,7 +14,7 @@ for question in question_data:
     
 
 quiz = QuizBrain(question_bank)
-quizui = QuizInterface(question_text)
+quizui = QuizInterface(quiz)
 
 
 # while quiz.still_has_questions():
