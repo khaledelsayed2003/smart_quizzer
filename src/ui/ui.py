@@ -1,5 +1,6 @@
 from tkinter import *
 from core.quiz_brain import QuizBrain
+from playsound import playsound
 
 THEME_COLOR = "#375362"
 FONT_NAME = "Arial"
@@ -29,14 +30,31 @@ class QuizInterface:
    
    
     def get_next_question(self):
-        q_text = self.quiz.next_question()
-        self.canvas.itemconfig(self.ques_text, text= q_text)
-        
+        if self.quiz.still_has_questions():
+            self.canvas.config(bg="#FFFFFF")
+            self.score_label.config(text=f"Score: {self.quiz.score}")
+            q_text = self.quiz.next_question()
+            self.canvas.itemconfig(self.ques_text, text= q_text)
+        else:
+            self.canvas.config(bg="#EE82EE")
+            self.canvas.itemconfig(self.ques_text, text=f"You’ve reached the end of the quiz 🎉")
+            self.window.after(1, lambda: playsound("smart_quizzer/src/assets/sounds/congrats.mp3")) # success sound played when the user complete the quiz.
+            self.true_button.config(state="disabled")
+            self.false_button.config(state="disabled")
+            self.window.after(5000, self.window.destroy)
+    
     
     def true_clicked(self):
-        self.quiz.check_answer("True")
-        self.get_next_question()
+        if self.quiz.check_answer("True"):
+            self.canvas.config(bg="#00FF00")
+        else:
+            self.canvas.config(bg="#FF4500")
+        self.window.after(1000, self.get_next_question)
+    
     
     def false_clicked(self):
-        self.quiz.check_answer("False")
-        self.get_next_question()
+        if self.quiz.check_answer("False"):
+            self.canvas.config(bg="#00FF00")
+        else:
+            self.canvas.config(bg="#FF4500")
+        self.window.after(1000, self.get_next_question)

@@ -17,12 +17,7 @@ quiz = QuizBrain(question_bank)
 quizui = QuizInterface(quiz)
 
 
-# while quiz.still_has_questions():
-#     quiz.next_question()
-#     quiz.still_has_questions()
 
-print("You have completed the quiz!")
-print(f"Your final score was {quiz.score}/{quiz.question_number}")
 
 
 
