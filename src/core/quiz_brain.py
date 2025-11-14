@@ -14,22 +14,25 @@ class QuizBrain:
     
     
     def next_question(self):
-        current_question = self.question_list[self.question_number]
+        self.current_question = self.question_list[self.question_number]
         self.question_number += 1
-        q_text = html.unescape(current_question.text)
+        q_text = html.unescape(self.current_question.text)
         return f"Q.{self.question_number}: {q_text}"
         # user_answer = input(f"Q.{self.question_number}: {q_text} (True/False): ") 
         # self.check_answer(user_answer, current_question.answer)
         
         
-    def check_answer(self, user_ans, correct_answer):
-        if user_ans.lower() == correct_answer.lower():
+    def check_answer(self, user_ans):
+        correct_ans = self.current_question.answer
+        if user_ans.lower() == correct_ans.lower():
             print("You got it right!")
             self.score += 1
+            
+            
         else:
             print("That's wrong!")
   
-        print(f"The correct answer was {correct_answer}.")
-        print(f"Your current score is {self.score}/{self.question_number}")
-        print("\n")
+        # print(f"The correct answer was {correct_answer}.")
+        # print(f"Your current score is {self.score}/{self.question_number}")
+        # print("\n")
         
